@@ -14,6 +14,7 @@ function parseFile(name: str): Array
 
     decl buf: str
     file size fread store buf
+    # I replaced "\n\n" with "$"
     buf "$" splitAtDelim store total
     
     decl i: int 0 store i
@@ -44,7 +45,7 @@ function main(): none
     "input1.txt" parseFile store array
 
     decl i: int 0 store i
-    // 1st
+    # 1st
     decl first: int 0 store first
     while i array.count < do
         i array:get first array:get >= if
@@ -52,7 +53,7 @@ function main(): none
         fi
         i 1 + store i
     done
-    // 2nd
+    # 2nd
     0 store i
     decl second: int 0 store second
     while i array.count < do
@@ -63,7 +64,7 @@ function main(): none
         fi
         i 1 + store i
     done
-    // 3rd
+    # 3rd
     0 store i
     decl third: int 0 store third
     while i array.count < do
