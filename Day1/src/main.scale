@@ -42,7 +42,7 @@ end
 
 function main(): none
     decl array: Array
-    "input1.txt" parseFile store array
+    "input.txt" parseFile store array
 
     decl i: int 0 store i
     # 1st
