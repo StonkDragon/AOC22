@@ -1,0 +1,81 @@
+using "core" from "Core"
+using "util/array" from "Core"
+using "file" from "Core"
+
+extern function splitAtDelim(string: str, delim: any): Array
+
+function parseFile(name: str): Array
+    decl total: Array
+    decl file: any name "rb" fopen store file
+
+    file 0 fseekend
+    decl size: int file ftell store size
+    file 0 fseekstart
+
+    decl buf: str
+    file size fread store buf
+    buf "$" splitAtDelim store total
+    
+    decl i: int 0 store i
+    decl out: Array total.count Array:new store out
+    while i total.count < do
+        decl elf: str i total:get store elf
+        decl nums: Array elf "\n" splitAtDelim store nums
+
+        decl j: int 0 store j
+        decl cals: int 0 store cals
+        while j nums.count < do
+            decl num: int j nums:get store num
+            cals num stringToLong + store cals
+
+            j 1 + store j
+        done
+
+        cals out:push
+
+        i 1 + store i
+    done
+    
+    out return
+end
+
+function main(): none
+    decl array: Array
+    "input1.txt" parseFile store array
+
+    decl i: int 0 store i
+    // 1st
+    decl first: int 0 store first
+    while i array.count < do
+        i array:get first array:get >= if
+            i store first
+        fi
+        i 1 + store i
+    done
+    // 2nd
+    0 store i
+    decl second: int 0 store second
+    while i array.count < do
+        i array:get first array:get < if
+            i array:get second array:get >= if
+                i store second
+            fi
+        fi
+        i 1 + store i
+    done
+    // 3rd
+    0 store i
+    decl third: int 0 store third
+    while i array.count < do
+        i array:get second array:get < if
+            i array:get third array:get >= if
+                i store third
+            fi
+        fi
+        i 1 + store i
+    done
+    
+
+    first second third putint putint putint
+    first array:get second array:get third array:get + + putint
+end
