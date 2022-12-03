@@ -58,7 +58,7 @@ function main(): none
     0 store linePrio
     0 store prio
 
-    for i in 0 to lines.count + 3 do
+    for i in 0 to lines.count step + 3 do
         decl b1: Array i 0 + lines:get toChars store b1
         decl b2: Array i 1 + lines:get toChars store b2
         decl b3: Array i 2 + lines:get toChars store b3
