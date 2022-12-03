@@ -20,7 +20,8 @@ function main(): none
     # Part 1
     decl prio: int 0 store prio
     decl linePrio: int 0 store linePrio
-    foreach line in lines do
+    for i in 0 to lines.count do
+        decl line: str i lines:get store line
         # split lines in half
         decl len: int line strlen 2 / store len
         decl l1: str line strdup store l1
@@ -34,8 +35,10 @@ function main(): none
 
         0 store linePrio
 
-        foreach l1char in l1chars do
-            foreach l2char in l2chars do
+        for x1 in 0 to l1chars.count do
+            decl l1char: str x1 l1chars:get store l1char
+            for y1 in 0 to l2chars.count do
+                decl l2char: str y1 l2chars:get store l2char
                 l1char l2char == if
                     l1char 'a' >= l1char 'z' <= && if
                         # 1 + l1char - 'a'
@@ -65,9 +68,12 @@ function main(): none
         
         0 store linePrio
 
-        foreach b1item in b1 do
-            foreach b2item in b2 do
-                foreach b3item in b3 do
+        for x in 0 to b1.count do
+            decl b1item: int x b1:get store b1item
+            for y in 0 to b2.count do
+                decl b2item: int y b1:get store b2item
+                for z in 0 to b3.count do
+                    decl b3item: int z b1:get store b3item
                     b1item b2item == b1item b3item == && if
                         b1item 'a' >= b1item 'z' <= && if
                             b1item 'a' - 1 + linePrio + store linePrio
