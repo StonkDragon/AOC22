@@ -35,10 +35,10 @@ function main(): none
 
         0 store linePrio
 
-        for x1 in 0 to l1chars.count do
-            decl l1char: str x1 l1chars:get store l1char
-            for y1 in 0 to l2chars.count do
-                decl l2char: str y1 l2chars:get store l2char
+        for x in 0 to l1chars.count do
+            decl l1char: str x l1chars:get store l1char
+            for y in 0 to l2chars.count do
+                decl l2char: str y l2chars:get store l2char
                 l1char l2char == if
                     l1char 'a' >= l1char 'z' <= && if
                         # 1 + l1char - 'a'

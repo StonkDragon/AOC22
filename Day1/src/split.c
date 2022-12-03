@@ -1,22 +1,15 @@
 #include "../scale_support.h"
 
-void Method_Array_init(void);
-void Method_Array_push(void);
+void Method_Array_init(struct Array*, scl_int);
+void Method_Array_push(struct Array*, scl_value);
 
-sclDefFunc(splitAtDelim, struct Array*) {
-    scl_str sep = stack.data[--stack.ptr].s;
-    scl_str string = strdup(stack.data[--stack.ptr].s);
+sclDefFunc(splitAtDelim, struct Array*, scl_str sep, scl_str string) {
     struct Array* arr = scl_alloc_struct(sizeof(struct Array), "Array");
-    stack.data[stack.ptr++].i = 10;
-    stack.data[stack.ptr++].v = arr;
-    Method_Array_init();
+    Method_Array_init(arr, 10);
 
     scl_str line = strtok(string, sep);
     while (line != NULL) {
-        stack.data[stack.ptr++].s = line;
-        stack.data[stack.ptr++].v = arr;
-        Method_Array_push();
-        // printf("Line: %s\n", line);
+        Method_Array_push(arr, line);
         line = strtok(NULL, sep);
     }
     return arr;
