@@ -6,35 +6,35 @@ extern function splitAtDelim(string: str, delim: any): Array
 
 function parseFile(name: str): Array
     decl total: Array
-    decl file: any name "rb" fopen store file
+    decl file: any name "rb" fopen => file
 
     file 0 fseekend
-    decl size: int file ftell store size
+    decl size: int file ftell => size
     file 0 fseekstart
 
     decl buf: str
-    file size fread store buf
+    file size fread => buf
     # I replaced "\n\n" with "$"
-    buf "$" splitAtDelim store total
+    buf "$" splitAtDelim => total
     
-    decl i: int 0 store i
-    decl out: Array total.count Array:new store out
+    decl i: int 0 => i
+    decl out: Array total.count Array:new => out
     while i total.count < do
-        decl elf: str i total:get store elf
-        decl nums: Array elf "\n" splitAtDelim store nums
+        decl elf: str i total:get => elf
+        decl nums: Array elf "\n" splitAtDelim => nums
 
-        decl j: int 0 store j
-        decl cals: int 0 store cals
+        decl j: int 0 => j
+        decl cals: int 0 => cals
         while j nums.count < do
-            decl num: int j nums:get store num
-            cals num stringToLong + store cals
+            decl num: int j nums:get => num
+            cals num stringToLong + => cals
 
-            j 1 + store j
+            j 1 + => j
         done
 
         cals out:push
 
-        i 1 + store i
+        i 1 + => i
     done
     
     out return
@@ -42,38 +42,38 @@ end
 
 function main(): none
     decl array: Array
-    "input.txt" parseFile store array
+    "input.txt" parseFile => array
 
-    decl i: int 0 store i
+    decl i: int 0 => i
     # 1st
-    decl first: int 0 store first
+    decl first: int 0 => first
     while i array.count < do
         i array:get first array:get >= if
-            i store first
+            i => first
         fi
-        i 1 + store i
+        i 1 + => i
     done
     # 2nd
-    0 store i
-    decl second: int 0 store second
+    0 => i
+    decl second: int 0 => second
     while i array.count < do
         i array:get first array:get < if
             i array:get second array:get >= if
-                i store second
+                i => second
             fi
         fi
-        i 1 + store i
+        i 1 + => i
     done
     # 3rd
-    0 store i
-    decl third: int 0 store third
+    0 => i
+    decl third: int 0 => third
     while i array.count < do
         i array:get second array:get < if
             i array:get third array:get >= if
-                i store third
+                i => third
             fi
         fi
-        i 1 + store i
+        i 1 + => i
     done
     
 

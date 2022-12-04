@@ -2,84 +2,84 @@ using "core" from "Core"
 using "file" from "Core"
 
 function parseFile(name: str): Array
-    decl file: any name "rb" fopen store file
+    decl file: any name "rb" fopen => file
 
     file 0 fseekend
-    decl size: int file ftell store size
+    decl size: int file ftell => size
     file 0 fseekstart
 
     decl buf: str
-    file size fread store buf
+    file size fread => buf
     buf "\n" strsplit return
 end
 
 function main(): none
     decl lines: Array
-    "input.txt" parseFile store lines
+    "input.txt" parseFile => lines
 
     # Part 1
-    decl prio: int 0 store prio
-    decl linePrio: int 0 store linePrio
+    decl prio: int 0 => prio
+    decl linePrio: int 0 => linePrio
     for i in 0 to lines.count do
-        decl line: str i lines:get store line
+        decl line: str i lines:get => line
         # split lines in half
-        decl len: int line strlen 2 / store len
-        decl l1: str line strdup store l1
-        decl l2: str line len + store l2
+        decl len: int line strlen 2 / => len
+        decl l1: str line strdup => l1
+        decl l2: str line len + => l2
 
-        decl l1end: any l1 len + store l1end
-        0 store @l1end
+        decl l1end: any l1 len + => l1end
+        0 => @l1end
 
-        decl l1chars: Array l1 toChars store l1chars
-        decl l2chars: Array l2 toChars store l2chars
+        decl l1chars: Array l1 toChars => l1chars
+        decl l2chars: Array l2 toChars => l2chars
 
-        0 store linePrio
+        0 => linePrio
 
         for x in 0 to l1chars.count do
-            decl l1char: str x l1chars:get store l1char
+            decl l1char: str x l1chars:get => l1char
             for y in 0 to l2chars.count do
-                decl l2char: str y l2chars:get store l2char
+                decl l2char: str y l2chars:get => l2char
                 l1char l2char == if
                     l1char 'a' >= l1char 'z' <= && if
                         # 1 + l1char - 'a'
-                        l1char 'a' - 1 + linePrio + store linePrio
+                        l1char 'a' - 1 + linePrio + => linePrio
                     fi
                     l1char 'A' >= l1char 'Z' <= && if
-                        l1char 'A' - 27 + linePrio + store linePrio
+                        l1char 'A' - 27 + linePrio + => linePrio
                     fi
                     goto next
                 fi
             done
         done
         label next
-        linePrio prio + store prio
+        linePrio prio + => prio
     done
     "Priorities for Part 1: " prio longToString concat puts
 
     # Part 2
 
-    0 store linePrio
-    0 store prio
+    0 => linePrio
+    0 => prio
 
     for i in 0 to lines.count step + 3 do
-        decl b1: Array i 0 + lines:get toChars store b1
-        decl b2: Array i 1 + lines:get toChars store b2
-        decl b3: Array i 2 + lines:get toChars store b3
+        decl b1: Array i 0 + lines:get toChars => b1
+        decl b2: Array i 1 + lines:get toChars => b2
+        decl b3: Array i 2 + lines:get toChars => b3
         
-        0 store linePrio
+        0 => linePrio
 
         for x in 0 to b1.count do
-            decl b1item: int x b1:get store b1item
+            decl b1item: int x b1:get => b1item
             for y in 0 to b2.count do
-                decl b2item: int y b1:get store b2item
+                decl b2item: int y b1:get => b2item
                 for z in 0 to b3.count do
-                    decl b3item: int z b1:get store b3item
+                    decl b3item: int z b1:get => b3item
                     b1item b2item == b1item b3item == && if
                         b1item 'a' >= b1item 'z' <= && if
-                            b1item 'a' - 1 + linePrio + store linePrio
+                            b1item 'a' - 1 + linePrio + => linePrio
                         fi
                         b1item 'A' >= b1item 'Z' <= && if
-                            b1item 'A' - 27 + linePrio + store linePrio
+                            b1item 'A' - 27 + linePrio + => linePrio
                         fi
                         goto next2
                     fi
@@ -87,7 +87,7 @@ function main(): none
             done
         done
         label next2
-        linePrio prio + store prio
+        linePrio prio + => prio
     done
     "Priorities for Part 2: " prio longToString concat puts
 end

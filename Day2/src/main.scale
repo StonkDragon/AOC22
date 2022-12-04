@@ -2,14 +2,14 @@ using "core" from "Core"
 using "file" from "Core"
 
 function parseFile(name: str): Array
-    decl file: any name "rb" fopen store file
+    decl file: any name "rb" fopen => file
 
     file 0 fseekend
-    decl size: int file ftell store size
+    decl size: int file ftell => size
     file 0 fseekstart
 
     decl buf: str
-    file size fread store buf
+    file size fread => buf
     buf "\n" strsplit return 
 end
 
@@ -129,17 +129,17 @@ end
 
 function main(): none
     decl array: Array
-    "input.txt" parseFile store array
+    "input.txt" parseFile => array
 
-    decl score: int 0 store score
+    decl score: int 0 => score
 
-    decl i: int 0 store i
+    decl i: int 0 => i
     while i array.count < do
-        decl buf: str i array:get store buf
+        decl buf: str i array:get => buf
         decl p1: int
         decl p2: int
-        buf @ toChar 'A' - 1 + store p1
-        buf 2 + @ toChar 'X' - 1 + store p2
+        buf @ toChar 'A' - 1 + => p1
+        buf 2 + @ toChar 'X' - 1 + => p2
         
         p1 p2 
         calculateItem
@@ -150,8 +150,8 @@ function main(): none
         
         +
         score +
-        store score
-        i 1 + store i
+        => score
+        i 1 + => i
     done
     "Total score: " score longToString concat puts
 end
