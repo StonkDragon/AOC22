@@ -1,0 +1,83 @@
+using "core" from "Core"
+using "file" from "Core"
+using "util/range" from "Core"
+
+function parseFile(name: str): Array
+    decl file: any name "rb" fopen store file
+
+    file 0 fseekend
+    decl size: int file ftell store size
+    file 0 fseekstart
+
+    decl buf: str
+    file size fread store buf
+    buf "\n" strsplit return
+end
+
+function Range:containsRange(other: Range): int
+    other._start self:contains other._end self:contains && if
+        true return
+    fi
+    false return
+end
+
+function Range:overlaps(other: Range): int
+    other._start self:contains other._end self:contains || if
+        true return
+    fi
+    false return
+end
+
+function Range:contains(pos: int): int
+    pos self._start >= if
+        pos self._end <= if
+            true return
+        fi
+    fi
+    false return
+end
+
+function main(): none
+    decl arr: Array
+    "input.txt" parseFile store arr
+
+    decl totalDuplicates: int 0 store totalDuplicates
+
+    for i in 0 to arr.count do
+        decl line: str i arr:get store line
+        decl partners: Array
+        line "," strsplit store partners
+
+        decl p1: Array 0 partners:get "-" strsplit store p1
+        decl p2: Array 1 partners:get "-" strsplit store p2
+
+        decl p1r: Range 0 p1:get stringToLong 1 p1:get stringToLong Range:new store p1r
+        decl p2r: Range 0 p2:get stringToLong 1 p2:get stringToLong Range:new store p2r
+
+        # i longToString ": " concat p2r p1r:contains p1r p2r:contains || longToString concat puts
+
+        p2r p1r:containsRange p1r p2r:containsRange || if
+            totalDuplicates 1 + store totalDuplicates
+        fi
+    done
+    "Total duplicates (Part 1): " totalDuplicates longToString concat puts
+
+    decl totalOverlaps: int 0 store totalOverlaps
+
+    for i in 0 to arr.count do
+        decl line: str i arr:get store line
+        decl partners: Array
+        line "," strsplit store partners
+
+        decl p1: Array 0 partners:get "-" strsplit store p1
+        decl p2: Array 1 partners:get "-" strsplit store p2
+
+        decl p1r: Range 0 p1:get stringToLong 1 p1:get stringToLong Range:new store p1r
+        decl p2r: Range 0 p2:get stringToLong 1 p2:get stringToLong Range:new store p2r
+
+        p2r p1r:overlaps p1r p2r:overlaps || if
+            totalOverlaps 1 + store totalOverlaps
+        fi
+    done
+    "Total overlaps (Part 2): " totalOverlaps longToString concat puts
+end
