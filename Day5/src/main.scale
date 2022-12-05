@@ -1,0 +1,55 @@
+using "file" from "Core"
+using "debug" from "Core"
+
+function parseFile(name: str): Array
+    decl file: any name "rb" fopen => file
+
+    file 0 fseekend
+    decl size: int file ftell => size
+    file 0 fseekstart
+
+    decl buf: str
+    file size fread => buf
+    buf "\n" strsplit return
+end
+
+function main(): none
+    decl lines: Array
+    "input.txt" parseFile => lines
+
+    decl stacks: Array 10 Array:new => stacks
+
+    foreach line in lines do
+        5 "move " line strncmp ! if
+            line toChars stacks:push
+            continue
+        fi
+        decl lineData: Array
+        line " " strsplit => lineData
+        decl _: any
+        decl countStr: str
+        decl srcStr: str
+        decl destStr: str
+        lineData => (_, countStr, _, srcStr, _, destStr)
+        line puts
+        decl count: int countStr stringToLong => count
+        decl src: int srcStr stringToLong 1 - => src
+        decl dest: int destStr stringToLong 1 - => dest
+        
+        decl tmp: Array count Array:new => tmp
+
+        for i in 0 to count do
+            src stacks:get Array:top tmp:push
+            src stacks:get Array:pop
+        done
+        for i in 0 to count do
+            tmp:top dest stacks:get Array:push
+            tmp:pop
+        done
+    done
+
+    for i in 0 to stacks.count do
+        i stacks:get Array:top cdecl "printf(\"%c\", (char) stack.data[--stack.ptr].i);"
+    done
+    "" puts
+end
