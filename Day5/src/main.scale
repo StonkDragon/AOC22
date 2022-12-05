@@ -39,9 +39,11 @@ function main(): none
         decl tmp: Array count Array:new => tmp
 
         for i in 0 to count do
+            # Replace 'tmp:push' with 'dest stacks:get Array:push' for Part 1
             src stacks:get Array:top tmp:push
             src stacks:get Array:pop
         done
+        # Comment out for Part 1
         for i in 0 to count do
             tmp:top dest stacks:get Array:push
             tmp:pop
