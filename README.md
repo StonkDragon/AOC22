@@ -9,3 +9,5 @@
 - Finished in about 20-25 Minutes
 ## Day 5:
 - Finished in about 30 Minutes
+## Day 6
+- Finished in about 25 Minutes
