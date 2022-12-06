@@ -1,0 +1,119 @@
+using "file" from "Core"
+using "debug" from "Core"
+
+function areDifferent(a: int, b: int, c: int, d: int): int
+    a b == if false return fi
+    a c == if false return fi
+    a d == if false return fi
+    b c == if false return fi
+    b d == if false return fi
+    c d == if false return fi
+    true return
+end
+
+function Array:pushIfAbsent(val: any): none
+    for i in 0 to self.count do
+        i self:get val == if
+            return
+        fi
+    done
+    val self:push
+end
+
+function Array:contains(val: any): int
+    for i in 0 to self.count do
+        i self:get val == if
+            true return
+        fi
+    done
+    false return
+end
+
+function part1(input: str): none
+    decl chars: Array input toChars => chars
+    decl a: int 0 => a
+    decl b: int 0 => b
+    decl c: int 0 => c
+    decl d: int 0 => d
+    decl i: int 0 => i
+    foreach char in chars do
+        c => d
+        b => c
+        a => b
+        char => a
+        decl data: Array 4 Array:new => data
+        a data:pushIfAbsent
+        b data:pushIfAbsent
+        c data:pushIfAbsent
+        d data:pushIfAbsent
+        data.count 4 == 0 data:contains ! && if
+            break
+        fi
+        i 1 + => i
+    done
+    "Start of packet: " i longToString concat puts
+end
+
+function part2(input: str): none
+    decl chars: Array input toChars => chars
+    decl a: int 0 => a
+    decl b: int 0 => b
+    decl c: int 0 => c
+    decl d: int 0 => d
+    decl e: int 0 => e
+    decl f: int 0 => f
+    decl g: int 0 => g
+    decl h: int 0 => h
+    decl k: int 0 => k
+    decl l: int 0 => l
+    decl m: int 0 => m
+    decl n: int 0 => n
+    decl o: int 0 => o
+    decl p: int 0 => p
+    
+    decl i: int 0 => i
+    foreach char in chars do
+        o => p
+        n => o
+        m => n
+        l => m
+        k => l
+        h => k
+        g => h
+        f => g
+        e => f
+        d => e
+        c => d
+        b => c
+        a => b
+        char => a
+        decl data: Array 14 Array:new => data
+        a data:pushIfAbsent
+        b data:pushIfAbsent
+        c data:pushIfAbsent
+        d data:pushIfAbsent
+        e data:pushIfAbsent
+        f data:pushIfAbsent
+        g data:pushIfAbsent
+        h data:pushIfAbsent
+        k data:pushIfAbsent
+        l data:pushIfAbsent
+        m data:pushIfAbsent
+        n data:pushIfAbsent
+        o data:pushIfAbsent
+        p data:pushIfAbsent
+        data.count 14 == 0 data:contains ! && if
+            break
+        fi
+        i 1 + => i
+    done
+    "Start of message: " i 1 + longToString concat puts
+end
+
+
+function main(): none
+    decl input: str
+    "pwjwljjjvqjqjzqjqvvpgvpggmdgdrrzmzfzmzffzbbjnbjnjddsdpsdsgsgvsgvgmmzvvpspvspsdsbsbffhwhlwwzllftfhhrfrsrrnnngqgtglgfgtffnssrspsqppdvdtdwwpfpzffnpnddvsswjswjjhdjdrjrwwfpwfpfjppzwzvzpzrznzgzcgzgpgfpffwggtbbhsslzztpplltdtqtctrrszrzszpsprptrtgrtrzrvzrvzrrsfsbswsvvbdbjjgljjwqwgqwwtmwwnbbzdbdwwsnntztstbssnjssjmmldmmrrnfrfgfbbszzzlrrwzwtwwbrwrlwrwzwmwqmwwtqwwtvvdqdtqqfnfjnjsnslltcllvmmdmttvsszrsrwssdmdttdmdrmrsrvrllrhlltmlmlzmlzzhvhbbflfsslclpcczmmcjmjccpgprrgnrrzqqmgqggfvgffbsfsbfbttrgtrtptgtjtnnfbfmmrrcmcwwbbmwmvvvtppslsvvlsvswwztwztzqqpggdccmlldlplggrgddlrddvwvsswllsffbllsbbslshslswsllnqlqrqqpmqmtmqtmqtmmbwmbbzdbzbttvptvpvgpvggblbsspgppvmvsswfssfdfrdffpbfpprmrssmbbmggszslzlslblsldsldssjjsrjjjdfdjdtdmdnnncddpfddrjdjvjfvjffftmfmqqqqqfjjhssbzbbfjjmmzgzllphlplhlplfpfnpnsppjjqsshpssjdjzzwvvjfvfnfttmtbbgtgbbdpbbjppzcpzzvcvpvvdcvvcfvvfsvsccmhhrwrjjsrjrvrfvfwvvtftzztlztlthlhrhnnlpnllnmnfmffzpffhlhbhqbhqhfhwwlglnndgdwdswwgtwgtgsttpbprpqpnnbsnbsnszzrszsqzqlqggvhghrrvprvvvqnnmmrwrbrrmttwrrlmrrrddmsddbhdhdjhdhrhffppphghvvtztptjjlppcqcscjscstsmsbspsgpgqgmmndmdvvpnpnrrjtrthhtzzjlzzrwzrrfsfflrrmffhlhglhhhhvwwttlcttbqqzzbzzzbhbsscqqjggqpggqffbttrfrjjjqmmpttlvvqlvqqqtgtrtcrcbcnbbhfbfhbhqbhqbqvbvqvrqvvgttqwqpwqwnnpgngpphjppztptnnrssjqqrplzrvmwmbrbgbnggvzpmphqsrjrdhtslpmmwrhgcndwtbsbrfmsplzqswsnmrwdwwhzmpbqcmjfsmnwqnjmvdczhgmtfjwnjfdllfzdwpwgclpbdqtqnqqqvpthltznfzshhgrwwqclpplmdwtpjszrdwwzfbljcjmqmhptfhvcbvgfjfftbsfglwqldphdzzgcmvtsbhlsdncfjcsqrqrtdhttcwzlbqhvgppbrjfzdzwzprwpfflmdspcmqcbdhsvwjswwbzwnqrshbqfnmtdzrsrjgqngntllcgwjnmjqvtgwvttfqrcjlhbpcrszlngfmdgzprcdttgbjpcdzbhtdghpltcbvcddnslhqthfvzjtspqlzhdprhgtrlqqgtsqwwjqthgdwfgdfzhrnrwlrpqmgqltgldpjqgjzvngrphclbfftnwfnfvsvhftthptqfnvlftdpdhcrjdhfwtpwwvsblgntdwcpnsprhnpjtjsprdrdjwlhnmnzmmjmcdfsctzgmlqwwrwztjndqgpqrvdgplcnntqhfjlzjszpdwnvlwdzzgpzvplglgrmsjgjpmsrdsgzlfblgbgszgdtgsggqvhzmnfcnvlnzrfpqphctlcqccqzslmlsbbztnpncqpgscgdmmsgfwqrzpmbqrmfqsnnggswhmgmtmgdmhwthbgbdsrtnsrvdfdhlhhczgdsdqnpsgjzpbnsmgrvsfdjlhgjfjjwqnrnrbzdzcjlstclpqfnrflgnzbdbzvbjcbgqrrrlfcpgptcghhqqfsvsgljvjhdgdgcjtnrqsctmwhzbmbrfrsvndhfrtwlfgvqcbjsvttrctfshrggdvgbhthnwbwqglrvfbsqnbhdwgzhbccjnlhtcbjlpgrvttthnwvvspnzvqhjvmtwshcstdjhfqhqcgvwqwwwwrfdmnjhldsrhgmtjddsghdmdrpczbcjflmbhszctmvdttfrrqqpwslhvqbjlsrjdjrcqjrhwgjlsqmvdpvvvlbzwtthptpsggddcbqbhrvrpdtncvgndclhpngzgfqdqgwwbrjltjtqbpbtbzjmfmnjnlqmtzvdqdwqhbgptplrgdsfpjzfrpdcdsznwffpnzsmpqjfbcpddqjgfqhqbwsfmzgstfdnzhphhvgbzvjrlmqmrznpctftcmbtdpbfbfpfpjtjhbcrrssnlvtrtnzvwtjwplclpqndpfstjmghmzsllhntprtjwlppjnjgjzlvlcbcwjvrjqjhfnnpmwlpngwtvvbcllmjzqfrwvtvsrvbcpfwcdfwmdwvztwtbrgvlvmfjmpzdzmfbcmrsqfwqjfjfrgmnblnzfzcvgwllvmqfmdlqqgvvjrptlrjcwphvchwhmtwhnlnjprqhlrhmdfptvpshjbzrhptvnqfvjfjcnglnbfhbwghqqjbqzdthjwqzznwfsmqmbsqnwrdrrwjgzjdmgtsqswlqcpshdmcfjttpszqmsjhgfsrvgchgwzbqgbdqhmbndmnmwjsnjjvmtpprbtlwzpvfdnbtjnzzvlwndgbhgwbpllvfghwvwjmlpnzfjzjwwmtvbbfndppbqwhjlwgtswmgffddbhnwqljvgcvfnqmzgvfmjwsbcrpgtcpchlblccgpgpmddsjsfwbnvnsfttnsqjshchdztvsbjwsfmszfwpwsmgzvvcfddtczvvmnhgjffrsfqzfmphpfblmwgcbbrjqzdztzzzjhqmjzrgmwgrqdfqdbjsgwfndqgnmdvjlwdtjpjtpcqlhtcfvnmzjswldrbqjpmrlqwhvnqjshbqqvzwwsdjmspgbvrgvpjjnwsvnvnppvlnqbdllfczjjftpnlrjfvcwgwbdmldtcnczqzcptjjrgglnnbgmrdffgmnnwvjzwbgcncnhzmthswrdsrhchprrrrnhjfnzmsgfjltqzmttvhslnsgcjfgqwcsddfstcstspcpdbznvdrnqhwqsfgqtdbtwspfswfjbzgtqjpvzfhfdblszblmgrmmlwvnwwdsdjjvrsfjfjltcsfccplftvpltqshgnpnqlqcglrhvzldptspnbvjcchnnvzvbbqnnnbnggrhpcgqtgnjdqplswtblgtwqzmltjjhpdttgbcvhfrsdcgjzswvtbbhrpnzmrjhgznbdpqgqdhwcnmgflpdtbzdbvzvslbvvwdpcnwjtvjhgncnljfwlrvqgdrjhdcprsqjrmwwlcrrvsjtlmqmjtcbqwcbmgnvfshdgmmfffzvwjphjfspvdzjsqdlgqfdjwwshdcssqvvgdcvvtmwlfjdvtfllrvltmrsgpdtdqsfjpcvjnqszpnbqqlnpdvhtswbgwnpcqpgzqwlgsmlnlngcdmqhchcdgfmrhfwwrgrrdrhcsbbcrhghdjrcsltchqghvmbvbbpqzqbgwmqrgwchhbvdsqbqrfcbzwjrlqtnmghtjbtjdpngcjzswfmjfphjnftbhdgvwjsvqfbsfgqhfbcrgrsppsvbnpwlhsdrffcmmgzpjfsvllcrbtwrwddthfjvjndzfzbcmglhbzpzwwbtzdpdlwrnbzqjbqwpbdlwfddbtzjhqshmcghqfcrzrmrtmqwpqhvqzbfwhbssgjcmzqcpvnntbpfqwhbmtjdtbtrrdhsvzqjltdshtlvwwmlbdzlvjhmtppnbqcjnncpslcggsjbrmzvdgqzclwszgzfqthndnjfjrznlmmtjwwhnzvhnjncccpczrftvhtdhjbzvwvlgqhdnfqdqrhctfffpcnqzdrgqqzcczdjvpzqfgfcpjzqhbwshsqhvqzpsb" => input
+    input part1
+    input part2
+end

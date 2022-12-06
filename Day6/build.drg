@@ -1,0 +1,21 @@
+build: {
+  compiler: "sclc";
+  sourceDir: "src";
+  outputDir: "build";
+  target: "main.scl";
+  includes: [];
+  units: [
+    "main.scale";
+  ];
+  outFilePrefix: "-o";
+  libraryPathPrefix: "-L";
+  libraryPrefix: "-l";
+  macroPrefix: "-D";
+  includePrefix: "-I";
+  libraryPaths: [];
+  libs: [];
+  defines: [];
+  flags: [];
+  preBuild: [];
+  postBuild: [];
+};
