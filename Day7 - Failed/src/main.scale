@@ -1,0 +1,30 @@
+using "file" from "Core"
+using "debug" from "Core"
+using "util/map" from "Core"
+
+function parseFile(name: str): Array
+    decl file: any name "rb" fopen => file
+
+    file 0 fseekend
+    decl size: int file ftell => size
+    file 0 fseekstart
+
+    decl buf: str
+    file size fread => buf
+    buf "\n" strsplit return
+end
+
+function part1(input: Array): int
+    0 return
+end
+
+function part2(input: Array): int
+    0 return
+end
+
+function main(): none
+    "input.txt" parseFile => decl input: Array
+
+    "Part 1: " input part1 longToString concat puts
+    "Part 2: " input part2 longToString concat puts
+end
